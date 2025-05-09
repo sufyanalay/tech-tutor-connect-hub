@@ -10,3 +10,5 @@ Pillow==10.2.0
 python-magic==0.4.27
 django-storages==1.14.2
 drf-yasg==1.21.7
+django-filter==23.5
+gunicorn==21.2.0
