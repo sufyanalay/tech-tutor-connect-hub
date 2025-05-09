@@ -1,73 +1,113 @@
-# Welcome to your Lovable project
 
-## Project info
+# Education and Gadget Repair Platform API
 
-**URL**: https://lovable.dev/projects/fd143c57-fc08-4b9b-933c-ffc0084e271e
+A comprehensive Django REST Framework backend for an education and gadget repair platform with features like user authentication, repair requests management, academic support, real-time chat, and resources hub.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **User Authentication System**
+  - Registration/Login for Students, Teachers, Technicians
+  - JWT Authentication
+  - Role-based access control
 
-**Use Lovable**
+- **Online Gadget Repair System**
+  - Submit repair requests with descriptions and media
+  - Connect students with repair technicians
+  - Track repair status
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/fd143c57-fc08-4b9b-933c-ffc0084e271e) and start prompting.
+- **Academic Support System**
+  - Submit academic questions with optional media
+  - Connect students with teachers for help
+  - Q&A functionality
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Real-time Chat System**
+  - WebSocket-based real-time chat via Django Channels
+  - File/image sharing in chat
 
-**Use your preferred IDE**
+- **Rating and Feedback System**
+  - Rate and review service providers
+  - View average ratings
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Earning Dashboard**
+  - Track total earnings and completed services
+  - Service history
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Resources Hub**
+  - Upload and retrieve tutorials and guides
+  - Categorize educational resources
 
-Follow these steps:
+## Getting Started
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Prerequisites
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Python 3.8 or higher
+- SQLite database (included)
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Installation
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+1. Clone the repository:
+```bash
+git clone https://your-repository-url.git
+cd education-repair-platform
 ```
 
-**Edit a file directly in GitHub**
+2. Create a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-**Use GitHub Codespaces**
+4. Run migrations:
+```bash
+python manage.py migrate
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+5. Create a superuser (admin):
+```bash
+python manage.py createsuperuser
+```
 
-## What technologies are used for this project?
+6. Start the development server:
+```bash
+python manage.py runserver
+```
 
-This project is built with:
+The API will be available at http://localhost:8000/api/
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## API Documentation
 
-## How can I deploy this project?
+Once the server is running, you can access the API documentation at:
+- Swagger UI: http://localhost:8000/api/docs/
+- ReDoc: http://localhost:8000/api/redoc/
 
-Simply open [Lovable](https://lovable.dev/projects/fd143c57-fc08-4b9b-933c-ffc0084e271e) and click on Share -> Publish.
+## Authentication
 
-## Can I connect a custom domain to my Lovable project?
+The API uses JWT (JSON Web Token) authentication. To get an access token:
 
-Yes, you can!
+```
+POST /api/users/token/
+{
+  "email": "your-email@example.com",
+  "password": "your-password"
+}
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Use the token in subsequent requests in the Authorization header:
+```
+Authorization: Bearer <your_token>
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Key Endpoints
+
+- Users: `/api/users/`
+- Authentication: `/api/users/token/`
+- Repair Requests: `/api/repairs/requests/`
+- Academic Questions: `/api/academics/questions/`
+- Chat Rooms: `/api/chat/rooms/`
+- Messages: `/api/chat/messages/`
+- Resources: `/api/resources/resources/`
