@@ -1,4 +1,3 @@
-
 from rest_framework import viewsets, generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -32,6 +31,14 @@ class UserViewSet(viewsets.ModelViewSet):
     def dashboard(self, request, pk=None):
         user = self.get_object()
         serializer = self.get_serializer(user)
+        return Response(serializer.data)
+        
+    @action(detail=False, methods=['get'])
+    def me(self, request):
+        """
+        Returns the authenticated user's profile
+        """
+        serializer = self.get_serializer(request.user)
         return Response(serializer.data)
 
 
