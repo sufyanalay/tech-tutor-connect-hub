@@ -150,8 +150,5 @@ SIMPLE_JWT = {
 }
 
 # CORS settings
-CORS_ALLOW_ALL_ORIGINS = False
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-]
+CORS_ALLOW_ALL_ORIGINS = True  # This is equivalent to app.use(cors()) in Express.js
 CORS_ALLOW_CREDENTIALS = True
